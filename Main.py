@@ -21,7 +21,6 @@ Other.ClearScreen()  # Clear the Terminal Window
 # Final Imports
 
 # Ask for the Input and Process it
-
 Other.Menu()
 
 while True:

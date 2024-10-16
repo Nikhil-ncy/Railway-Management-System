@@ -15,7 +15,7 @@ def About():
     Parameters -> None
     """
     # Change the path given here to the absolute path of the README file
-    with open(FULL_PATH_TO_THE_README_FILE) as file:
+    with open('/../README.md') as file:
         data = file.read()
         print(data)
 
@@ -29,7 +29,7 @@ def ClearScreen():
 
     print("Clearing..")
     time.sleep(2)
-    os.system("cls")
+    os.system("clear")
 
 
 def Menu(answer="Yes"):

@@ -32,8 +32,8 @@ def AvailableTrains():
     Parameters -> None   
     """
 
-    mn = mysql.connector.connect(host="localhost", user=YOUR_USERNAME,
-                                 password=YOUR_PASSWORD, database="railway")
+    mn = mysql.connector.connect(host="localhost", user='root',
+                                 password='nicksgang', database="railway")
     cur = mn.cursor()
 
     print("Search by Entering the Station Codes!")
@@ -51,7 +51,7 @@ def AvailableTrains():
         'SELECT Train_No, Source_Station_Name, Destination_Station_Name, Arrival_Time, Departure_Time from train_info where Source_Station_Code="{}" AND Destination_Station_Code="{}";'.format(
             start_opt, final_opt))
     result = cur.fetchall()
-    os.system("cls")
+    os.system("clear")
     time.sleep(1)
     head = ["Train_No", "Source_Station_Name",
             "Destination_Station_Name", "Arrival_Time", "Departure_Time"]
@@ -85,8 +85,8 @@ def CheckFare():
     Parameters -> None
     """
 
-    mn = mysql.connector.connect(host="localhost", user=YOUR_USERNAME,
-                                 password=YOUR_PASSWORD, database="railway")
+    mn = mysql.connector.connect(host="localhost", user='root',
+                                 password='nicksgang', database="railway")
     cur = mn.cursor()
 
     print("Search by Entering the Station Code!")
@@ -101,7 +101,7 @@ def CheckFare():
             start_opt, final_opt))
     result_fare = cur.fetchall()
     time.sleep(1)
-    os.system("cls")
+    os.system("clear")
     if len(result_fare) >= 10:
         try:
             print("Total of", len(result_fare), "Records Found!")
@@ -135,11 +135,12 @@ def ShowBookings():
     Parameters -> None
     """
 
-    mn = mysql.connector.connect(host="localhost", user=YOUR_USERNAME,
-                                 password=YOUR_PASSWORD, database="railway")
+    mn = mysql.connector.connect(host="localhost", user='root',
+                                 password='nicksgang', database="railway")
     cur = mn.cursor()
 
     mobile_no = input("Please Enter your 10 Digit Mobile Number: ")
+    otp = int(input("Fill in the otp sent to your Mobile Number: "))
 
     cur.execute('SELECT * FROM bookings where Mobile_No="{}"'.format(mobile_no))
 
@@ -165,8 +166,8 @@ def BookTrain():
     Parameters -> None
     """
 
-    mn = mysql.connector.connect(host="localhost", user=YOUR_USERNAME,
-                                 password=YOUR_PASSWORD, database="railway")
+    mn = mysql.connector.connect(host="localhost", user='root',
+                                 password='nicksgang', database="railway")
     cur = mn.cursor()
     while True:
         try:
@@ -219,7 +220,7 @@ def BookTrain():
     date = date.strftime("%d-%m-%y")
 
     # Creating Unique ID for each Booking
-    id = random.randint(1, 10000)
+    id = random.randint(1, 100000)
     cur.execute("SELECT Booking_ID FROM BOOKINGS")
     result = cur.fetchall()
     Used_ID = []
@@ -228,7 +229,7 @@ def BookTrain():
             Used_ID.append(y)
     while True:
         if id in Used_ID:
-            id = random.randint(1, 10000)
+            id = random.randint(1, 100000)
         else:
             break
 
@@ -271,7 +272,7 @@ def BookTrain():
         elif ask in ["N", "n"]:
             print("Stopping Booking...")
             time.sleep(0.5)
-            os.system("cls")
+            os.system("clear")
             break
         else:
             print("Please Enter Y (Yes) or N (No)!")
@@ -284,8 +285,8 @@ def CancelBooking():
     Parameters -> None
     """
 
-    mn = mysql.connector.connect(host="localhost", user=YOUR_USERNAME,
-                                 password=YOUR_PASSWORD, database="railway")
+    mn = mysql.connector.connect(host="localhost", user='root',
+                                 password='nicksgang', database="railway")
     cur = mn.cursor()
 
     print("Please use the Show my Bookings Option\n to get the Unique ID of the Booking you want to Cancel!")
@@ -300,7 +301,7 @@ def CancelBooking():
                 print("Invalid ID!")
             elif unique_id < 1:
                 print("ID Out of Range!")
-            elif unique_id > 10000:
+            elif unique_id > 100000:
                 print("ID Out of Range!")
             elif len(str(unique_id)) != 0 and unique_id >= 1 and unique_id <= 10000:
                 cur.execute(

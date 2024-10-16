@@ -4,7 +4,7 @@
 
 import mysql.connector as con
 from mysql.connector.errors import ProgrammingError, Error
-import core.InsertData as Insert
+import InsertData as Insert
 
 # Functions
 
@@ -18,8 +18,8 @@ def CheckDatabase():
 
     print("Checking Database Requirements..")
 
-    db = con.connect(host="localhost", user=YOUR_USERNAME,
-                     database="", password=YOUR_PASSWORD)
+    db = con.connect(host="localhost", user='root',
+                     database="", password='nicksgang')
     cur = db.cursor()
     result = None
 
@@ -52,8 +52,8 @@ def CreateTables():
     Parameters -> None
     """
 
-    db = con.connect(host="localhost", user=YOUR_USERNAME,
-                     database="railway", password=YOUR_PASSWORD)
+    db = con.connect(host="localhost", user='root',
+                     database="railway", password='nicksgang')
     cur = db.cursor()
 
     cur.execute(
@@ -78,8 +78,8 @@ def CheckConnection():
         print("Checking the Connection to the MySQL Server..")
         connection = con.connect(host='localhost',
                                  database='',
-                                 user=YOUR_USERNAME,
-                                 password=YOUR_PASSWORD)
+                                 user='root',
+                                 password='nicksgang')
         if connection.is_connected():
             db_Info = connection.get_server_info()
             print("Connected to MySQL Server Version", db_Info)
